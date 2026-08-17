@@ -1,6 +1,6 @@
 {
   "name": "dsh-mimo-worker",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "description": "model_route: route execution tasks (read files, edit code, run commands, compile, test) to a configured worker sub-agent model (default meituan LongCat-2.0) and return a structured report for the main model to accept",
   "type": "module",
   "main": "lib/index.js",
