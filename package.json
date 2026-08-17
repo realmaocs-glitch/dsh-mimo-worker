@@ -1,0 +1,48 @@
+{
+  "name": "dsh-mimo-worker",
+  "version": "0.1.0",
+  "description": "model_route: route execution tasks (read files, edit code, run commands, compile, test) to a configured worker sub-agent model (default meituan LongCat-2.0) and return a structured report for the main model to accept",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    }
+  },
+  "files": [
+    "lib/index.js"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "dsh": {
+    "bundle": {
+      "id": "mimo-worker",
+      "description": "model_route: main model plans/reviews, worker model executes (default meituan/LongCat-2.0), structured report back",
+      "inserts": [
+        {
+          "id": "model-route",
+          "name": "dsh-mimo-worker",
+          "config": {
+            "toolName": "model_route",
+            "providerName": "spawn",
+            "provider": "meituan",
+            "model": "LongCat-2.0",
+            "maxTokens": 8192,
+            "maxDepth": 3,
+            "labelPrefix": "model_route",
+            "toolFilter": {
+              "deny": [
+                "subagent",
+                "subagent_fork",
+                "workflow",
+                "ask_user_question"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}
